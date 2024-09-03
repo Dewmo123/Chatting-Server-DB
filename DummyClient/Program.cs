@@ -38,9 +38,9 @@ namespace DummyClient
 
             byte[] buffer = new byte[1024];
             string message = null;
-            Task t1 = Task.Run(() => { while (true) message = Console.ReadLine(); });
             while (true)
             {
+                message = Console.ReadLine();
                 if (message != null)
                 {
                     if (name == null)

@@ -17,10 +17,13 @@ namespace ServerCore
         SocketAsyncEventArgs _sendArgs = new SocketAsyncEventArgs();
 
         private RecvBuffer _recvBuffer = new RecvBuffer(4096);
+
         private Queue<ArraySegment<byte>> _sendQueue = new Queue<ArraySegment<byte>>();
         private List<ArraySegment<byte>> _pendingList = new List<ArraySegment<byte>>();
+
         public abstract int OnRecv(ArraySegment<byte> buffer);
         public abstract void OnSend(ArraySegment<byte> buffer);
+
         public void Init(Socket socket)
         {
             _socket = socket;
