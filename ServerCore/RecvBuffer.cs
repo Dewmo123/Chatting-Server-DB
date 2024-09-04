@@ -6,19 +6,19 @@ namespace ServerCore
     {
         private ArraySegment<byte> _buffer;
 
-        private int _readPos = 0;
-        private int _writePos = 0;
+        private int _readPos = 0;//읽은 위치
+        private int _writePos = 0;//데이터를 받은 위치
 
         public RecvBuffer(int bufferSize)
         {
             _buffer = new ArraySegment<byte>(new byte[bufferSize], 0, bufferSize);
         }
 
-        public int DataSize { get { return _writePos - _readPos; } }
-        public int FreeSize { get { return _buffer.Count - _writePos; } }
+        public int DataSize { get { return _writePos - _readPos; } }//읽지 않은 데이터가 들어있는 크기
+        public int FreeSize { get { return _buffer.Count - _writePos; } }//쓸 수 있는 크기
 
-        public ArraySegment<byte> DataSegment => new ArraySegment<byte>(_buffer.Array, _buffer.Offset + _readPos, DataSize);
-        public ArraySegment<byte> RecvSegment => new ArraySegment<byte>(_buffer.Array, _buffer.Offset + _writePos, FreeSize);
+        public ArraySegment<byte> DataSegment => new ArraySegment<byte>(_buffer.Array, _buffer.Offset + _readPos, DataSize);//읽지 않은 데이터가 들어있는 버퍼
+        public ArraySegment<byte> RecvSegment => new ArraySegment<byte>(_buffer.Array, _buffer.Offset + _writePos, FreeSize);//사용할 수 있는 버퍼
 
         public void Clear()
         {

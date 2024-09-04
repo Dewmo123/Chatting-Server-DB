@@ -33,6 +33,7 @@ namespace ServerCore
 
             RegisterReceive();
         }
+        #region Send
         public void Send(ArraySegment<byte> buffer)
         {
             lock (_locker)
@@ -75,7 +76,8 @@ namespace ServerCore
                 }
             }
         }
-
+        #endregion
+        #region Receive
         private void RegisterReceive()
         {
             _recvBuffer.Clear();
@@ -105,7 +107,7 @@ namespace ServerCore
                         Console.WriteLine("Error");
                         return;
                     }
-                    if (_recvBuffer.OnRead(len) == false)
+                    if (_recvBuffer.OnRead(len) == false)   
                     {
                         Console.WriteLine(len);
                         return;
@@ -118,7 +120,6 @@ namespace ServerCore
                 }
             }
         }
-
-
+        #endregion 
     }
 }

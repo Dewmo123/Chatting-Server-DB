@@ -32,6 +32,7 @@ namespace ChattingServer
         static void Main(string[] args)
         {
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 3001);
+            #region DatabaseInput
             Console.WriteLine("DBIp: ");
             string DBIp = Console.ReadLine(); 
             Console.WriteLine("DBName: ");
@@ -44,7 +45,9 @@ namespace ChattingServer
             string uid = Console.ReadLine();
             Console.WriteLine("TableName: ");
             string tableName = Console.ReadLine();
+            #endregion
             dbManager.ConnectDB($"Server={DBIp};Port={portNum};Database={DBName};Uid={uid};Pwd={password}",tableName);
+
             try
             {
                 _listener.Init(endPoint, () => { return new ChattingSession(); }, (Session session) => { clientSockets.Add(session); }, isGetName);
