@@ -34,14 +34,14 @@ namespace DummyClient
 
             IPEndPoint endPoint = new IPEndPoint(serverIP, 3001);
             Connector connector = new Connector();
-            connector.Initialize(endPoint, () => { return new GameSession(); });
+            connector.Init(endPoint, () => { return new GameSession(); });
 
             byte[] buffer = new byte[1024];
             string message = null;
             while (true)
             {
                 message = Console.ReadLine();
-                if (message != null)
+                if (message != "")
                 {
                     if (name == null)
                         buffer = Encoding.UTF8.GetBytes($"{message}");

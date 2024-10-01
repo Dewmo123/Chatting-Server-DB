@@ -9,7 +9,7 @@ namespace ServerCore
         private Func<Session> _sessionFactory;
         public Session session;
 
-        public void Initialize(IPEndPoint endPoint, Func<Session> factory)
+        public void Init(IPEndPoint endPoint, Func<Session> factory)
         {
             _sessionFactory = factory;
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -28,7 +28,6 @@ namespace ServerCore
             bool pending = socket.ConnectAsync(args);
             if (!pending)
                 OnConnectCompleted(null, args);
-
         }
 
         private void OnConnectCompleted(object sender, SocketAsyncEventArgs args)

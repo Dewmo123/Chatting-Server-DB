@@ -37,7 +37,7 @@ namespace ServerCore
             }
         }
 
-        public bool OnRead(int numOfBytes)
+        public bool OnRead(int numOfBytes)//데이터를 읽으면 읽은 크기만큼 readPos 당겨주기
         {
             if (numOfBytes > DataSize)
                 return false;
@@ -45,7 +45,7 @@ namespace ServerCore
             return true;
         }
          
-        public bool OnWrite(int numOfBytes)
+        public bool OnWrite(int numOfBytes)//데이터를 쓰면 쓴 크기만큼 writePos 당겨주기
         {
             if (numOfBytes > FreeSize) return false;
             _writePos += numOfBytes;
